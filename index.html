@@ -117,32 +117,30 @@
     </div>
     <div class="form-card">
       <form id="mooxion-form">
-        <input type="email" name="email_address" id="email_address" placeholder="Tu email" required autocomplete="email" aria-label="Tu correo electronico">
-        <button type="submit" class="submit-btn" id="submit-btn">Suscribete</button>
+        <input type="email" name="email_address" id="email_address" placeholder="Tu email" required autocomplete="email" aria-label="Tu correo electrónico">
+        <button type="submit" class="submit-btn" id="submit-btn">Suscríbete</button>
       </form>
       <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     </div>
-    <div class="progress-wrap" role="img" aria-label="Barra de progreso de video">
-      <div class="progress-track">
-        <div class="progress-fill"></div>
-      </div>
+    <div class="progress-wrap" role="img" aria-label="Barra de progreso de vídeo">
+      <div class="progress-track"><div class="progress-fill"></div></div>
       <div class="progress-meta">
         <span class="now">00:38</span>
-        <span>Grabando tu proximo video</span>
-        <span>-:--</span>
+        <span>Grabando tu próximo vídeo</span>
+        <span>—:——</span>
       </div>
     </div>
   </section>
   <section class="story">
-    <p class="story-kicker">Por que existe esto</p>
-    <p>Un colega me escribio a las 2 de la manana.</p>
-    <p>Llevaba horas grabando, editando, subiendo y nada.<br>Cero visitas. Cero animo.</p>
-    <p>Le dije <strong>3 cosas</strong> que estaba haciendo mal. Las cambio. Esa semana, su video exploto.</p>
-    <p>Y pense: <span class="highlight">cuanta gente esta ahi mismo, atascada</span>, sin saber que el problema tiene solucion?</p>
+    <p class="story-kicker">Por qué existe esto</p>
+    <p>Un colega me escribió a las 2 de la mañana.</p>
+    <p>Llevaba horas grabando, editando, subiendo… y nada.<br>Cero visitas. Cero ánimo.</p>
+    <p>Le dije <strong>3 cosas</strong> que estaba haciendo mal. Las cambió. Esa semana, su vídeo exploó.</p>
+    <p>Y pensé: <span class="highlight">¿cuánta gente está ahí mismo, atascada</span>, sin saber que el problema tiene solución?</p>
     <p>Por eso existe esto. Un correo corto. Lo que aprendo, lo que me funciona, directo a tu bandeja.</p>
-    <p class="cta-line">Ahi lo tienes. Si te vale, <span>suscribete</span>. Si no, nos vemos en el proximo video.</p>
+    <p class="cta-line">Ahí lo tienes. Si te vale, <span>suscríbete</span>. Si no, nos vemos en el próximo vídeo.</p>
   </section>
-  <footer>2026 Mooxion</footer>
+  <footer>© 2026 Mooxion</footer>
 </main>
 <script>
   const form = document.getElementById('mooxion-form');
@@ -163,19 +161,19 @@
         body: JSON.stringify({ email_address: email })
       });
       if (res.ok) {
-        statusEl.textContent = 'Listo! Revisa tu correo para confirmar la suscripcion.';
+        statusEl.textContent = '¡Listo! Revisa tu correo para confirmar la suscripción.';
         statusEl.className = 'form-status success';
         form.reset();
       } else {
-        statusEl.textContent = 'Algo no ha ido bien. Intentalo de nuevo en un momento.';
+        statusEl.textContent = 'Algo no ha ido bien. Inténtalo de nuevo en un momento.';
         statusEl.className = 'form-status error';
       }
     } catch (err) {
-      statusEl.textContent = 'No se ha podido conectar. Revisa tu conexion e intentalo de nuevo.';
+      statusEl.textContent = 'No se ha podido conectar. Revisa tu conexión e inténtalo de nuevo.';
       statusEl.className = 'form-status error';
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Suscribete';
+      btn.textContent = 'Suscríbete';
     }
   });
 </script>
