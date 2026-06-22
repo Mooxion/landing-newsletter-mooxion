@@ -8,174 +8,175 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231a0f00'/%3E%3Crect x='22' y='22' width='56' height='56' rx='12' transform='rotate(45 50 50)' fill='%23ffb700'/%3E%3C/svg%3E">
 <style>
-  :root {
-    --bg-1: #1a0f00;
-    --bg-2: #0a0603;
-    --amber-1: #ffb700;
-    --amber-2: #ffea00;
-    --blue-2: #00a6ff;
-    --paper: #f7f3ea;
-    --paper-dim: #cdc3b0;
-    --grey: #8a7f6e;
-    --line: rgba(247, 243, 234, 0.09);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg-2); color: var(--paper); font-family: 'Montserrat', sans-serif; overflow-x: hidden; position: relative; }
-  .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 183, 0, 0.16), transparent 65%), radial-gradient(ellipse 50% 40% at 15% 100%, rgba(255, 140, 0, 0.10), transparent 60%), linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 55%); }
-  .lines { position: absolute; top: 0; left: 0; z-index: 0; pointer-events: none; width: 100%; height: 1400px; opacity: 0.22; filter: blur(1.5px); }
-  .lines path { filter: drop-shadow(0 0 8px currentColor); }
-  .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-  main { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: 0 24px; }
-  .hero { padding: 76px 0 8px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .logo-mark { width: 108px; height: 108px; position: relative; margin-bottom: 28px; }
-  .logo-glow { position: absolute; inset: -30px; background: radial-gradient(circle, rgba(255, 183, 0, 0.5), rgba(255, 183, 0, 0) 70%); filter: blur(6px); animation: breathe 4s ease-in-out infinite; }
-  .logo-ring { position: absolute; inset: -16px; border-radius: 50%; border: 1px solid rgba(255, 234, 0, 0.18); }
-  .logo-ring::after { content: ''; position: absolute; top: -2px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--blue-2); box-shadow: 0 0 8px 2px rgba(0, 166, 255, 0.7); animation: orbit 7s linear infinite; }
-  @keyframes orbit { from { transform: rotate(0deg) translateX(0); } to { transform: rotate(360deg) translateX(0); } }
-  .logo-ring { transform-origin: center; }
-  @keyframes breathe { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
-  .logo-mark svg { width: 100%; height: 100%; position: relative; z-index: 2; }
-  .eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--amber-2); margin-bottom: 18px; }
-  h1 { font-weight: 800; font-size: clamp(2.1rem, 6vw, 2.9rem); line-height: 1.18; letter-spacing: -0.01em; color: var(--paper); max-width: 480px; }
-  h1 .accent { color: var(--amber-1); }
-  .socials { display: flex; gap: 18px; margin: 24px 0 0; }
-  .socials a { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--paper-dim); transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
-  .socials a:hover { border-color: var(--amber-1); color: var(--amber-2); transform: translateY(-2px); }
-  .socials svg { width: 18px; height: 18px; }
-  .form-card { margin-top: 32px; width: 100%; max-width: 440px; }
-  #mooxion-form { display: flex; gap: 10px; }
-  #mooxion-form input[type="email"] { flex: 1; background: rgba(247, 243, 234, 0.05); border: 1.5px solid var(--line); border-radius: 9px; padding: 15px 18px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 500; color: var(--paper); outline: none; transition: border-color 0.2s ease, background 0.2s ease; min-width: 0; }
-  #mooxion-form input[type="email"]::placeholder { color: var(--grey); }
-  #mooxion-form input[type="email"]:focus { border-color: var(--amber-1); background: rgba(247, 243, 234, 0.08); }
-  button.submit-btn { flex-shrink: 0; border: none; border-radius: 9px; padding: 15px 24px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; color: #1a0f00; background: var(--amber-1); cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease; white-space: nowrap; }
-  button.submit-btn:hover { background: var(--amber-2); transform: translateY(-1px); box-shadow: 0 8px 22px -6px rgba(255, 183, 0, 0.5); }
-  button.submit-btn:active { transform: translateY(0); }
-  button.submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
-  button.submit-btn:focus-visible, #mooxion-form input:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 2px; }
-  .form-status { font-size: 13px; font-weight: 500; text-align: center; min-height: 18px; margin-top: 10px; }
-  .form-status.success { color: var(--amber-2); }
-  .form-status.error { color: #ff8a6b; }
-  @media (max-width: 480px) { #mooxion-form { flex-direction: column; } button.submit-btn { width: 100%; padding: 16px 24px; } }
-  .progress-wrap { margin-top: 48px; width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; }
-  .progress-track { position: relative; width: 100%; height: 4px; border-radius: 4px; background: var(--line); overflow: visible; }
-  .progress-fill { position: absolute; inset: 0; width: 38%; border-radius: 4px; background: linear-gradient(90deg, var(--amber-1), var(--amber-2)); }
-  .progress-fill::after { content: ''; position: absolute; right: -7px; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--amber-2); transform: translateY(-50%); box-shadow: 0 0 12px 3px rgba(255, 183, 0, 0.7); animation: scrub-pulse 2.4s ease-in-out infinite; }
-  @keyframes scrub-pulse { 0%, 100% { box-shadow: 0 0 12px 3px rgba(255, 183, 0, 0.6); } 50% { box-shadow: 0 0 18px 6px rgba(255, 234, 0, 0.85); } }
-  .progress-meta { display: flex; justify-content: space-between; width: 100%; margin-top: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--grey); }
-  .progress-meta .now { color: var(--amber-1); }
-  @media (prefers-reduced-motion: reduce) { .progress-fill::after { animation: none; } }
-  .story { margin-top: 88px; padding-bottom: 56px; }
-  @media (max-width: 480px) { .story { margin-top: 56px; } }
-  .story-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber-1); margin-bottom: 22px; }
-  .story p { font-size: 17px; line-height: 1.7; color: var(--paper-dim); font-weight: 400; margin-bottom: 18px; }
-  .story p strong { color: var(--paper); font-weight: 700; }
-  .story .highlight { color: var(--paper); font-weight: 600; }
-  .story .cta-line { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); font-size: 18px; font-weight: 700; color: var(--paper); line-height: 1.5; }
-  .story .cta-line span { color: var(--amber-1); }
-  footer { padding: 8px 0 48px; text-align: center; font-size: 12.5px; color: var(--grey); }
-  @media (prefers-reduced-motion: reduce) { .logo-glow, .logo-ring::after { animation: none; } html { scroll-behavior: auto; } }
+:root {
+--bg-1: #1a0f00;
+--bg-2: #0a0603;
+--amber-1: #ffb700;
+--amber-2: #ffea00;
+--blue-2: #00a6ff;
+--paper: #f7f3ea;
+--paper-dim: #cdc3b0;
+--grey: #8a7f6e;
+--line: rgba(247, 243, 234, 0.09);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg-2); color: var(--paper); font-family: 'Montserrat', sans-serif; overflow-x: hidden; position: relative; }
+.ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 183, 0, 0.16), transparent 65%), radial-gradient(ellipse 50% 40% at 15% 100%, rgba(255, 140, 0, 0.10), transparent 60%), linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 55%); }
+.lines { position: absolute; top: 0; left: 0; z-index: 0; pointer-events: none; width: 100%; height: 1400px; opacity: 0.22; filter: blur(1.5px); }
+.lines path { filter: drop-shadow(0 0 8px currentColor); }
+.grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+main { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; padding: 0 24px; }
+.hero { padding: 76px 0 8px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.logo-mark { width: 108px; height: 108px; position: relative; margin-bottom: 28px; }
+.logo-glow { position: absolute; inset: -30px; background: radial-gradient(circle, rgba(255, 183, 0, 0.5), rgba(255, 183, 0, 0) 70%); filter: blur(6px); animation: breathe 4s ease-in-out infinite; }
+.logo-ring { position: absolute; inset: -16px; border-radius: 50%; border: 1px solid rgba(255, 234, 0, 0.18); }
+.logo-ring::after { content: ''; position: absolute; top: -2px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--blue-2); box-shadow: 0 0 8px 2px rgba(0, 166, 255, 0.7); animation: orbit 7s linear infinite; }
+@keyframes orbit { from { transform: rotate(0deg) translateX(0); } to { transform: rotate(360deg) translateX(0); } }
+.logo-ring { transform-origin: center; }
+@keyframes breathe { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+.logo-mark svg { width: 100%; height: 100%; position: relative; z-index: 2; }
+.eyebrow { font-size: 12.5px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--amber-2); margin-bottom: 18px; }
+h1 { font-weight: 800; font-size: clamp(2.1rem, 6vw, 2.9rem); line-height: 1.18; letter-spacing: -0.01em; color: var(--paper); max-width: 480px; }
+h1 .accent { color: var(--amber-1); }
+.socials { display: flex; gap: 18px; margin: 24px 0 0; }
+.socials a { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--paper-dim); transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+.socials a:hover { border-color: var(--amber-1); color: var(--amber-2); transform: translateY(-2px); }
+.socials svg { width: 18px; height: 18px; }
+.form-card { margin-top: 32px; width: 100%; max-width: 440px; }
+#mooxion-form { display: flex; gap: 10px; }
+#mooxion-form input[type="email"] { flex: 1; background: rgba(247, 243, 234, 0.05); border: 1.5px solid var(--line); border-radius: 9px; padding: 15px 18px; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 500; color: var(--paper); outline: none; transition: border-color 0.2s ease, background 0.2s ease; min-width: 0; }
+#mooxion-form input[type="email"]::placeholder { color: var(--grey); }
+#mooxion-form input[type="email"]:focus { border-color: var(--amber-1); background: rgba(247, 243, 234, 0.08); }
+button.submit-btn { flex-shrink: 0; border: none; border-radius: 9px; padding: 15px 24px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; color: #1a0f00; background: var(--amber-1); cursor: pointer; transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease; white-space: nowrap; }
+button.submit-btn:hover { background: var(--amber-2); transform: translateY(-1px); box-shadow: 0 8px 22px -6px rgba(255, 183, 0, 0.5); }
+button.submit-btn:active { transform: translateY(0); }
+button.submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+button.submit-btn:focus-visible, #mooxion-form input:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 2px; }
+.form-status { font-size: 13px; font-weight: 500; text-align: center; min-height: 18px; margin-top: 10px; }
+.form-status.success { color: var(--amber-2); }
+.form-status.error { color: #ff8a6b; }
+@media (max-width: 480px) { #mooxion-form { flex-direction: column; } button.submit-btn { width: 100%; padding: 16px 24px; } }
+.progress-wrap { margin-top: 48px; width: 100%; max-width: 440px; display: flex; flex-direction: column; align-items: center; }
+.progress-track { position: relative; width: 100%; height: 4px; border-radius: 4px; background: var(--line); overflow: visible; }
+.progress-fill { position: absolute; inset: 0; width: 38%; border-radius: 4px; background: linear-gradient(90deg, var(--amber-1), var(--amber-2)); }
+.progress-fill::after { content: ''; position: absolute; right: -7px; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: var(--amber-2); transform: translateY(-50%); box-shadow: 0 0 12px 3px rgba(255, 183, 0, 0.7); animation: scrub-pulse 2.4s ease-in-out infinite; }
+@keyframes scrub-pulse { 0%, 100% { box-shadow: 0 0 12px 3px rgba(255, 183, 0, 0.6); } 50% { box-shadow: 0 0 18px 6px rgba(255, 234, 0, 0.85); } }
+.progress-meta { display: flex; justify-content: space-between; width: 100%; margin-top: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--grey); }
+.progress-meta .now { color: var(--amber-1); }
+@media (prefers-reduced-motion: reduce) { .progress-fill::after { animation: none; } }
+.story { margin-top: 88px; padding-bottom: 56px; }
+@media (max-width: 480px) { .story { margin-top: 56px; } }
+.story-kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber-1); margin-bottom: 22px; }
+.story p { font-size: 17px; line-height: 1.7; color: var(--paper-dim); font-weight: 400; margin-bottom: 18px; }
+.story p strong { color: var(--paper); font-weight: 700; }
+.story .highlight { color: var(--paper); font-weight: 600; }
+.story .cta-line { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); font-size: 18px; font-weight: 700; color: var(--paper); line-height: 1.5; }
+.story .cta-line span { color: var(--amber-1); }
+footer { padding: 8px 0 48px; text-align: center; font-size: 12.5px; color: var(--grey); }
+@media (prefers-reduced-motion: reduce) { .logo-glow, .logo-ring::after { animation: none; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
 <div class="ambient"></div>
 <svg class="lines" viewBox="0 0 800 1400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="lineAmber" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5"/>
-    </linearGradient>
-    <linearGradient id="lineBlue" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9"/>
-    </linearGradient>
-  </defs>
-  <path d="M -80 90 C 120 40, 160 240, 380 180 S 760 30, 920 -20" stroke="url(#lineAmber)" stroke-width="3.5" fill="none" stroke-linecap="round" style="color:#ffffff"/>
-  <path d="M -80 1080 C 80 1030, 140 1230, 340 1190 S 700 1000, 900 1060" stroke="url(#lineBlue)" stroke-width="3.5" fill="none" stroke-linecap="round" style="color:#ffffff"/>
-  <path d="M 920 720 C 760 760, 740 940, 560 960 S 240 880, 80 940" stroke="url(#lineAmber)" stroke-width="2.5" fill="none" stroke-linecap="round" style="color:#ffffff" opacity="0.6"/>
+<defs>
+<linearGradient id="lineAmber" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0.5"/>
+</linearGradient>
+<linearGradient id="lineBlue" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0.9"/>
+</linearGradient>
+</defs>
+<path d="M -80 90 C 120 40, 160 240, 380 180 S 760 30, 920 -20" stroke="url(#lineAmber)" stroke-width="3.5" fill="none" stroke-linecap="round" style="color:#ffffff"/>
+<path d="M -80 1080 C 80 1030, 140 1230, 340 1190 S 700 1000, 900 1060" stroke="url(#lineBlue)" stroke-width="3.5" fill="none" stroke-linecap="round" style="color:#ffffff"/>
+<path d="M 920 720 C 760 760, 740 940, 560 960 S 240 880, 80 940" stroke="url(#lineAmber)" stroke-width="2.5" fill="none" stroke-linecap="round" style="color:#ffffff" opacity="0.6"/>
 </svg>
 <div class="grain"></div>
 <main>
-  <section class="hero">
-    <div class="logo-mark">
-      <div class="logo-glow"></div>
-      <div class="logo-ring"></div>
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <rect x="22" y="22" width="56" height="56" rx="12" transform="rotate(45 50 50)" fill="#f7f3ea"/>
-      </svg>
-    </div>
-    <p class="eyebrow">Para creadores que empiezan de cero</p>
-    <h1>Crea contenido que la gente <span class="accent">quiere ver</span>. Sin gastarte nada.</h1>
-    <div class="socials">
-      <a href="https://www.instagram.com/mooxioon/" target="_blank" rel="noopener" aria-label="Instagram de Mooxion">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
-      </a>
-      <a href="https://www.youtube.com/@Mooxion" target="_blank" rel="noopener" aria-label="YouTube de Mooxion">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z" fill="currentColor" stroke="none"/></svg>
-      </a>
-    </div>
-    <div class="form-card">
-      <form id="mooxion-form">
-        <input type="email" name="email_address" id="email_address" placeholder="Tu email" required autocomplete="email" aria-label="Tu correo electrónico">
-        <button type="submit" class="submit-btn" id="submit-btn">Suscríbete</button>
-      </form>
-      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-    </div>
-    <div class="progress-wrap" role="img" aria-label="Barra de progreso de vídeo">
-      <div class="progress-track"><div class="progress-fill"></div></div>
-      <div class="progress-meta">
-        <span class="now">00:38</span>
-        <span>Grabando tu próximo vídeo</span>
-        <span>—:——</span>
-      </div>
-    </div>
-  </section>
-  <section class="story">
-    <p class="story-kicker">Por qué existe esto</p>
-    <p>Un colega me escribió a las 2 de la mañana.</p>
-    <p>Llevaba horas grabando, editando, subiendo… y nada.<br>Cero visitas. Cero ánimo.</p>
-    <p>Le dije <strong>3 cosas</strong> que estaba haciendo mal. Las cambió. Esa semana, su vídeo exploó.</p>
-    <p>Y pensé: <span class="highlight">¿cuánta gente está ahí mismo, atascada</span>, sin saber que el problema tiene solución?</p>
-    <p>Por eso existe esto. Un correo corto. Lo que aprendo, lo que me funciona, directo a tu bandeja.</p>
-    <p class="cta-line">Ahí lo tienes. Si te vale, <span>suscríbete</span>. Si no, nos vemos en el próximo vídeo.</p>
-  </section>
-  <footer>© 2026 Mooxion</footer>
+<section class="hero">
+<div class="logo-mark">
+<div class="logo-glow"></div>
+<div class="logo-ring"></div>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<rect x="22" y="22" width="56" height="56" rx="12" transform="rotate(45 50 50)" fill="#f7f3ea"/>
+</svg>
+</div>
+<p class="eyebrow">Para creadores que empiezan de cero</p>
+<h1>Crea contenido que la gente <span class="accent">quiere ver</span>. Sin gastarte nada.</h1>
+<div class="socials">
+<a href="https://www.instagram.com/mooxioon/" target="_blank" rel="noopener" aria-label="Instagram de Mooxion">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+</a>
+<a href="https://www.youtube.com/@Mooxion" target="_blank" rel="noopener" aria-label="YouTube de Mooxion">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z" fill="currentColor" stroke="none"/></svg>
+</a>
+</div>
+<div class="form-card">
+<form id="mooxion-form">
+<input type="email" name="email_address" id="email_address" placeholder="Tu email" required autocomplete="email" aria-label="Tu correo electrónico">
+<button type="submit" class="submit-btn" id="submit-btn">Suscríbete</button>
+</form>
+<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+</div>
+<div class="progress-wrap" role="img" aria-label="Barra de progreso de vídeo">
+<div class="progress-track"><div class="progress-fill"></div></div>
+<div class="progress-meta">
+<span class="now">00:38</span>
+<span>Grabando tu próximo vídeo</span>
+<span>—:——</span>
+</div>
+</div>
+</section>
+<section class="story">
+<p class="story-kicker">Por qué existe esto</p>
+<p>Un colega me escribió a las 2 de la mañana.</p>
+<p>Llevaba horas grabando, editando, subiendo… y nada.<br>Cero visitas. Cero ánimo.</p>
+<p>Le dije <strong>3 cosas</strong> que estaba haciendo mal. Las cambió. Esa semana, su vídeo exploó.</p>
+<p>Y pensé: <span class="highlight">¿cuánta gente está ahí mismo, atascada</span>, sin saber que el problema tiene solución?</p>
+<p>Por eso existe esto. Un correo corto. Lo que aprendo, lo que me funciona, directo a tu bandeja.</p>
+<p class="cta-line">Ahí lo tienes. Si te vale, <span>suscríbete</span>. Si no, nos vemos en el próximo vídeo.</p>
+</section>
+<footer>© 2026 Mooxion</footer>
 </main>
 <script>
-  const form = document.getElementById('mooxion-form');
-  const statusEl = document.getElementById('form-status');
-  const btn = document.getElementById('submit-btn');
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const email = document.getElementById('email_address').value.trim();
-    if (!email) return;
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-    statusEl.textContent = '';
-    statusEl.className = 'form-status';
-    try {
-      const res = await fetch('https://app.kit.com/forms/9589593/subscriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email_address: email })
-      });
-      if (res.ok) {
-        statusEl.textContent = '¡Listo! Revisa tu correo para confirmar la suscripción.';
-        statusEl.className = 'form-status success';
-        form.reset();
-      } else {
-        statusEl.textContent = 'Algo no ha ido bien. Inténtalo de nuevo en un momento.';
-        statusEl.className = 'form-status error';
-      }
-    } catch (err) {
-      statusEl.textContent = 'No se ha podido conectar. Revisa tu conexión e inténtalo de nuevo.';
-      statusEl.className = 'form-status error';
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Suscríbete';
-    }
-  });
+const form = document.getElementById('mooxion-form');
+const statusEl = document.getElementById('form-status');
+const btn = document.getElementById('submit-btn');
+form.addEventListener('submit', async function (e) {
+e.preventDefault();
+const email = document.getElementById('email_address').value.trim();
+if (!email) return;
+btn.disabled = true;
+btn.textContent = 'Enviando...';
+statusEl.textContent = '';
+statusEl.className = 'form-status';
+try {
+const res = await fetch('https://app.kit.com/forms/9589593/subscriptions', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+body: JSON.stringify({ email_address: email })
+});
+if (res.ok) {
+statusEl.textContent = '¡Listo! Revisa tu correo para confirmar la suscripción.';
+statusEl.className = 'form-status success';
+form.reset();
+} else {
+statusEl.textContent = 'Algo no ha ido bien. Inténtalo de nuevo en un momento.';
+statusEl.className = 'form-status error';
+}
+} catch (err) {
+statusEl.textContent = 'No se ha podido conectar. Revisa tu conexión e inténtalo de nuevo.';
+statusEl.className = 'form-status error';
+} finally {
+btn.disabled = false;
+btn.textContent = 'Suscríbete';
+}
+});
 </script>
 </body>
 </html>
